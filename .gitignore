@@ -1,0 +1,21 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+.env
+
+# Data files (usually you don't want to track large CSVs)
+#*.csv
+*.zip
+
+# macOS specific
+.DS_Store
