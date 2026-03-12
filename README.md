@@ -3,7 +3,7 @@
 ## Project Overview
 This is my personal data science and machine learning project focused on predicting customer churn for a telecommunications company. Throughout the project, I conducted Exploratory Data Analysis (EDA), calculated Mutual Information metrics and Pearson correlation for the features, and trained a baseline Logistic Regression model.
 
-This project is currently under development: I plan to add detailed model evaluation metrics (Precision, Recall, ROC-AUC) and implement cross-validation in the near future.
+
 
 ## Repository Structure
 - `churn-predict.ipynb` — The main Jupyter Notebook containing the research process and code.
@@ -40,6 +40,4 @@ This project uses the *Telco Customer Churn* dataset. It contains information ab
    ```
 
 ## Future Plans
-1. Calculate the Confusion Matrix and ROC AUC.
-2. Implement cross-validation for more robust model evaluation.
-3. Develop an interactive web application based on Streamlit to showcase the model's predictions.
+
