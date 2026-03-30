@@ -19,3 +19,5 @@ env/
 
 # macOS specific
 .DS_Store
+
+.vscode
