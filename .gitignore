@@ -12,6 +12,7 @@ venv/
 ENV/
 env/
 .env
+.env.*
 
 # Data files (usually you don't want to track large CSVs)
 #*.csv
@@ -20,4 +21,4 @@ env/
 # macOS specific
 .DS_Store
 
-.vscode
+.vscode/

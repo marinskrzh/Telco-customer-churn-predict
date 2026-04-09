@@ -1,21 +1,35 @@
 # Telco Customer Churn Prediction
 
 ## Project Overview
-This is my personal data science and machine learning project focused on predicting customer churn for a telecommunications company. Throughout the project, I conducted Exploratory Data Analysis (EDA), calculated Mutual Information metrics and Pearson correlation for the features, and trained a baseline Logistic Regression model.
 
-
+A machine learning project for predicting customer churn in a telecommunications company. The project includes full EDA, feature engineering (Mutual Information, Pearson correlation), a trained Logistic Regression model, and a deployed interactive web application.
 
 ## Repository Structure
-- `churn-predict.ipynb` — The main Jupyter Notebook containing the research process and code.
-- `requirements.txt` — A list of required Python libraries and their versions for running the project.
-- `WA_Fn-UseC_-Telco-Customer-Churn.csv` — The original dataset (tracked in Git due to its small size).
-- `.gitignore` — Git configuration file to exclude unnecessary files like virtual environments.
+
+| File | Description |
+|------|-------------|
+| `churn-predict.ipynb` | Jupyter Notebook with EDA, feature analysis, and model training research |
+| `churn_pipeline.py` | Pipeline script: data loading, feature preparation, training, evaluation, model export |
+| `app.py` | Streamlit web application for interactive churn prediction |
+| `model.pkl` | Trained Logistic Regression model (serialized) |
+| `dv.pkl` | Fitted DictVectorizer for feature encoding (serialized) |
+| `test_customer.json` | Sample customer likely to churn (for testing) |
+| `test_customer_no_churn.json` | Sample customer unlikely to churn (for testing) |
+| `requirements.txt` | Full Python dependencies (local dev + notebook) |
+| `requirements-app.txt` | Minimal dependencies for Streamlit Cloud deployment |
+| `WA_Fn-UseC_-Telco-Customer-Churn.csv` | Original dataset |
 
 ## Dataset
-This project uses the *Telco Customer Churn* dataset. It contains information about customers, their service plans, tenure, and the target variable `Churn` — which indicates whether the customer has left the provider.
-*(The dataset is relatively small, around 1 MB, so it is kept alongside the code).*
 
-## How to run
+The [Telco Customer Churn](https://www.kaggle.com/datasets/blastchar/telco-customer-churn) dataset contains information about ~7000 customers: demographics, service subscriptions, contract type, billing, and the target variable `Churn`.
+
+## Model
+
+- Algorithm: Logistic Regression (`C=0.1`, solver `liblinear`)
+- Features: contract type, internet service, online security, tenure, monthly charges, and others (low-MI features like `gender`, `phoneservice`, `multiplelines` were dropped)
+- Metrics on test set: AUC ~0.84, F1 ~0.60
+
+## How to Run Locally
 
 1. Clone the repository:
    ```bash
@@ -23,21 +37,40 @@ This project uses the *Telco Customer Churn* dataset. It contains information ab
    cd TelcoCustomerChurn
    ```
 
-2. (Optional) Create and activate a virtual environment:
+2. Create and activate a virtual environment:
    ```bash
    python3 -m venv .venv
-   source .venv/bin/activate  # For macOS/Linux
+   source .venv/bin/activate
    ```
 
-3. Install project dependencies:
+3. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
 
-4. Launch Jupyter Notebook:
+4. Run the Streamlit app:
    ```bash
+   streamlit run app.py
+   ```
+
+5. (Optional) Retrain the model:
+   ```bash
+   python churn_pipeline.py
+   ```
+
+6. (Optional) Explore the research notebook:
+   ```bash
+   pip install jupyter
    jupyter notebook churn-predict.ipynb
    ```
 
-## Future Plans
 
+
+## Streamlit Cloud Deployment
+
+To deploy your own fork on [Streamlit Community Cloud](https://streamlit.io/cloud):
+
+1. Push the repository to GitHub (make sure `model.pkl`, `dv.pkl`, and `requirements-app.txt` are included)
+2. Go to [share.streamlit.io](https://share.streamlit.io) → New app
+3. Select your repo, branch `main`, entry point `app.py`, and set requirements file to `requirements-app.txt`
+4. Click Deploy
